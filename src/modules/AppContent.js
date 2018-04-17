@@ -7,7 +7,7 @@
 *------------------------------------------------------- */
 import React, { PureComponent } from 'react';
 import NavigatorViewContainer from './navigator/NavigatorViewContainer';
-import {View} from 'react-native';
+import { View } from 'react-native';
 import LoginContainer from './auth/Login/LoginContainer';
 export default class AppContent extends PureComponent {
   static propTypes = {
@@ -18,8 +18,6 @@ export default class AppContent extends PureComponent {
   state = {
     mode: 'login'
   }
-
-
   render() {
     return (
      <View style={styles.container}>
