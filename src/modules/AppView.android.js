@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {View, StyleSheet, StatusBar, ActivityIndicator, BackHandler} from 'react-native';
-import NavigatorViewContainer from './navigator/NavigatorViewContainer';
 import * as snapshotUtil from '../utils/snapshot';
 import * as SessionStateActions from '../modules/session/SessionState';
 import store from '../redux/store';
 import DeveloperMenu from '../components/DeveloperMenu';
 import MessageBox from './messageBox/MessageBoxContainer';
 import {NavigationActions} from 'react-navigation';
+import AppContent from './AppContent';
 
 class AppView extends Component {
   static displayName = 'AppView';
@@ -31,15 +31,16 @@ class AppView extends Component {
     // otherwise let OS handle the back button action
     return false;
   }
-
   componentWillMount() {
     BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
+
   }
 
   componentDidMount() {
     snapshotUtil.resetSnapshot()
       .then(snapshot => {
         const {dispatch} = this.props;
+        // dispatch(SessionStateActions.resetSessionStateFromSnapshot(snapshot));
         if (snapshot) {
           dispatch(SessionStateActions.resetSessionStateFromSnapshot(snapshot));
         } else {
@@ -65,7 +66,7 @@ class AppView extends Component {
       <View style={{flex: 1}}>
         <StatusBar backgroundColor='#455a64' barStyle='light-content' />
         <MessageBox />
-        <NavigatorViewContainer />
+        <AppContent />
         {__DEV__ && <DeveloperMenu />}
       </View>
     );

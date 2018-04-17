@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {View, StyleSheet, StatusBar, ActivityIndicator} from 'react-native';
-import NavigatorViewContainer from './navigator/NavigatorViewContainer';
+import AppContent from './AppContent';
 import * as snapshotUtil from '../utils/snapshot';
 import * as SessionStateActions from '../modules/session/SessionState';
 import store from '../redux/store';
 import DeveloperMenu from '../components/DeveloperMenu';
+import MessageBox from './messageBox/MessageBoxContainer';
 
 class AppView extends Component {
   static displayName = 'AppView';
@@ -44,7 +45,8 @@ class AppView extends Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar backgroundColor='#455a64' barStyle='light-content' />
-        <NavigatorViewContainer />
+        <MessageBox />
+        <AppContent />
         {__DEV__ && <DeveloperMenu />}
       </View>
     );

@@ -7,7 +7,7 @@ import {
   Text,
   View
 } from 'react-native';
-
+import { NavigationActions } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class CounterView extends Component {
@@ -32,6 +32,10 @@ class CounterView extends Component {
     }).isRequired,
     navigate: PropTypes.func.isRequired
   };
+
+  componentWillMount() {
+  }
+
 
   increment = () => {
     this.props.counterStateActions.increment();

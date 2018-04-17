@@ -9,7 +9,12 @@ export default function NavigatorReducer(state, action) {
   if (!state) {
     return fromJS(AppNavigator.router.getStateForAction(action, state));
   }
-
+  // const actionToDispatch = NavigationActions.reset({
+  //   index: 0,
+  //   key: null,
+  //   actions: [],
+  // });
+  // AppNavigator.dispatch(actionToDispatch);
   // Is this a navigation action that we should act upon?
   if (includes(NavigationActions, action.type)) {
     return fromJS(AppNavigator.router.getStateForAction(action, state.toJS()));
