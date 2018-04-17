@@ -6,7 +6,7 @@ import * as snapshotUtil from '../utils/snapshot';
 import * as SessionStateActions from '../modules/session/SessionState';
 import store from '../redux/store';
 import DeveloperMenu from '../components/DeveloperMenu';
-
+import MessageBox from './messageBox/MessageBoxContainer';
 import {NavigationActions} from 'react-navigation';
 
 class AppView extends Component {
@@ -65,6 +65,7 @@ class AppView extends Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar backgroundColor='#455a64' barStyle='light-content' />
+        <MessageBox />
         <NavigatorViewContainer />
         {__DEV__ && <DeveloperMenu />}
       </View>
