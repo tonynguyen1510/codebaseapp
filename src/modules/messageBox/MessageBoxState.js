@@ -24,9 +24,10 @@ export function toggleMessageBox(payload, next) {
 export default function(state = initialState, action) {
 	switch (action.type) {
 		case 'TOGGLE_MESSAGE_BOX':
-			return state.update('isOpen', value => {
-        console.log('is open', value);
-      });
+			return state
+				.update('isOpen', value => !value)
+				.set('message', action.payload ? action.payload.message : '')
+				.set('type', action.payload ? action.payload.type : 'info')
 		default:
 			return state;
 	}

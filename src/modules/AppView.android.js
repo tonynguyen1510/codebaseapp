@@ -40,7 +40,6 @@ class AppView extends Component {
     snapshotUtil.resetSnapshot()
       .then(snapshot => {
         const {dispatch} = this.props;
-
         if (snapshot) {
           dispatch(SessionStateActions.resetSessionStateFromSnapshot(snapshot));
         } else {

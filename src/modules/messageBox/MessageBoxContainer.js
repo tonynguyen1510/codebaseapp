@@ -6,7 +6,7 @@ import * as MessageBoxStateActions from './MessageBoxState';
 
 export default connect(
   state => ({
-    messageBox: state.get('messageBox')
+    messageBox: state.get('messageBox').toJS()
   }),
   dispatch => {
     return {
