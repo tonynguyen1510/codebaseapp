@@ -15,4 +15,4 @@ class PepperoniAppTemplate extends Component {
   }
 }
 
-AppRegistry.registerComponent('PepperoniAppTemplate', () => PepperoniAppTemplate);
+AppRegistry.registerComponent('PepperoniCodebase', () => PepperoniAppTemplate);
