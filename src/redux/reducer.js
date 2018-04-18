@@ -5,6 +5,7 @@ import CounterStateReducer from '../modules/counter/CounterState';
 import SessionStateReducer, {RESET_STATE} from '../modules/session/SessionState';
 import AuthState from '../modules/auth/AuthState';
 import MessageBoxState from '../modules/messageBox/MessageBoxState';
+import { reducer as formReducer } from 'redux-form/immutable';
 // ## Generator Reducer Imports
 
 const reducers = {
@@ -12,7 +13,8 @@ const reducers = {
   counter: CounterStateReducer,
   // ## Generator Reducers
   auth: AuthState,
-  messageBox: MessageBoxState,
+	messageBox: MessageBoxState,
+	form: formReducer,
   // Navigator states
   navigatorState: NavigatorStateReducer,
 

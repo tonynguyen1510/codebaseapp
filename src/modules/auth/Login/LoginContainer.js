@@ -7,8 +7,7 @@ import {toggleMessageBox} from '../../messageBox/MessageBoxState';
 
 export default connect(
   state => ({
-    userInfo: state.getIn(['auth', 'userInfo']),
-    loading: state.getIn(['auth', 'loading'])
+		auth: state.get('auth').toJS()
   }),
   dispatch => {
     return {

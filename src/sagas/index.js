@@ -8,7 +8,7 @@
 
 import { fork } from 'redux-saga/effects';
 
-// import auth from './auth';
+import auth from './auth';
 import middleware from './middleware';
 
 export function* startup() {
@@ -20,5 +20,5 @@ export default function* root() {
 	yield fork(middleware);
 
 	// combine your saga here
-	// yield fork(auth);
+	yield fork(auth);
 }

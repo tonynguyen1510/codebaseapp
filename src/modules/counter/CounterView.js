@@ -24,7 +24,8 @@ class CounterView extends Component {
     counter: PropTypes.number.isRequired,
     userName: PropTypes.string,
     userProfilePhoto: PropTypes.string,
-    loading: PropTypes.bool.isRequired,
+		loading: PropTypes.bool.isRequired,
+		logoutRequest: PropTypes.func.isRequired,
     counterStateActions: PropTypes.shape({
       increment: PropTypes.func.isRequired,
       reset: PropTypes.func.isRequired,
@@ -51,7 +52,12 @@ class CounterView extends Component {
 
   bored = () => {
     this.props.navigate({routeName: 'Color'});
-  };
+	};
+	logout = () => {
+		this.props.logoutRequest(() => {
+			this.props.navigate({routeName: 'Color'});
+		});
+	}
 
   renderUserInfo = () => {
     if (!this.props.userName) {
@@ -118,7 +124,11 @@ class CounterView extends Component {
             {'I\'m bored!'}
           </Text>
         </TouchableOpacity>
-
+				<TouchableOpacity onPress={this.logout} accessible={true}>
+					<Text style={styles.linkButton}>
+						{'Logout!'}
+					</Text>
+				</TouchableOpacity>
       </View>
     );
   }

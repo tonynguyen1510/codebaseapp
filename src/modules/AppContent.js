@@ -8,7 +8,9 @@
 import React, { PureComponent } from 'react';
 import NavigatorViewContainer from './navigator/NavigatorViewContainer';
 import { View } from 'react-native';
+import { Container } from 'native-base';
 import LoginContainer from './auth/Login/LoginContainer';
+import AuthStorage from '../utils/AuthStorage';
 export default class AppContent extends PureComponent {
   static propTypes = {
     // classes: PropTypes.object.isRequired,
@@ -16,18 +18,18 @@ export default class AppContent extends PureComponent {
 
   static defaultProps = {}
   state = {
-    mode: 'login'
+		mode: 'mainscreen'
   }
   render() {
     return (
-     <View style={styles.container}>
-      {this.state.mode === 'login' &&
+			<Container>
+			{!AuthStorage.loggedIn &&
           <LoginContainer />
       }
-      {this.state.mode === 'mainscreen' &&
+			{AuthStorage.loggedIn && this.state.mode === 'mainscreen' &&
         <NavigatorViewContainer />
       }
-     </View>
+     </Container>
     );
   }
 }

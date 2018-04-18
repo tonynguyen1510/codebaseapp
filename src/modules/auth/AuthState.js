@@ -13,6 +13,21 @@ const initialState = Map({
   error: ''
 });
 
+export function loginRequest(payload, next) {
+	return {
+		type: 'LOGIN_REQUEST',
+		payload,
+		next,
+	};
+}
+
+export function logoutRequest(next) {
+	return {
+		type: 'LOGOUT_REQUEST',
+		next,
+	};
+}
+
 export const getStudentList = (payload, next, nextError) => {
 	return {
 		type: 'SINGLE_API',
