@@ -13,6 +13,17 @@ const initialState = Map({
   error: ''
 });
 
+export const getStudentList = (payload, next, nextError) => {
+	return {
+		type: 'SINGLE_API',
+		payload: {
+			uri: `students?filter=${JSON.stringify(payload.filter)}`,
+			afterSuccess: next,
+			afterError: nextError,
+		},
+	};
+};
+
 function auth(state = initialState, action = {}) {
   switch (action.type) {
     case 'LOGIN_SUCCESS':

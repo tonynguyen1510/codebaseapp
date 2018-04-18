@@ -13,7 +13,7 @@ export default connect(
   dispatch => {
     return {
       navigate: bindActionCreators(NavigationActions.navigate, dispatch),
-      counterStateActions: bindActionCreators(AuthStateActions, dispatch),
+      authStateActions: bindActionCreators(AuthStateActions, dispatch),
       toggleMessageBox: (payload, next) => dispatch(toggleMessageBox(payload, next))
     };
   }

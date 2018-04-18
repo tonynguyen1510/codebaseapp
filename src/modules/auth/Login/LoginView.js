@@ -21,14 +21,20 @@ export default class LoginView extends Component {
   static propTypes = {
     // classes: PropTypes.object.isRequired,
     navigate: PropTypes.func.isRequired,
-    toggleMessageBox: PropTypes.func.isRequired
+	toggleMessageBox: PropTypes.func.isRequired,
+	authStateActions: PropTypes.shape({
+		getStudentList: PropTypes.func.isRequired,
+	}),
   }
 
   static defaultProps = {}
 
   handleMessage = () => {
     console.log('this is handle message');
-    this.props.toggleMessageBox({message: 'test error', type: 'error'});
+	// this.props.toggleMessageBox({message: 'test error', type: 'error'});
+	  this.props.authStateActions.getStudentList({filter: {}}, (res) => {
+		  console.log('res', res);
+	  });
   }
   render() {
     const {navigate} = this.props;

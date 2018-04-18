@@ -2,8 +2,12 @@ import {applyMiddleware, createStore, compose} from 'redux';
 import * as reduxLoop from 'redux-loop-symbol-ponyfill';
 import middleware from './middleware';
 import reducer from './reducer';
+import dataSaga from '../sagas';
+import createSagaMiddleware from 'redux-saga';
 
+const sagaMiddleware = createSagaMiddleware();
 const enhancers = [
+  applyMiddleware(sagaMiddleware),
   applyMiddleware(...middleware),
   reduxLoop.install()
 ];
@@ -19,7 +23,6 @@ const composeEnhancers = (
 	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 	) || compose;
 /* eslint-enable no-undef */
-
 const enhancer = composeEnhancers(...enhancers);
 
 // create the store
@@ -28,5 +31,5 @@ const store = createStore(
   null,
   enhancer
 );
-
+sagaMiddleware.run(dataSaga);
 export default store;
