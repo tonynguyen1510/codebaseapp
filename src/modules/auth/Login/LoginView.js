@@ -19,6 +19,7 @@ import styles from './styles';
 import { Field, reduxForm, propTypes } from 'redux-form/immutable';
 import Input from '../../../components/Form/Input/ReduxForm';
 import BtnLoader from '../../../components/Form/BtnLoader';
+import BtnFbLogin from '../../../components/Form/BtnFbLogin';
 import { required, minLength, email, aol } from '../../../utils/validate';
 import AuthStorage from '../../../utils/AuthStorage';
 const minLength6 = minLength(6);
@@ -131,6 +132,12 @@ export default class LoginView extends Component {
 							</Button>
 						</View>
           </View>
+					<View style={{ marginBottom: 50 }}>
+						<Text style={{ marginBottom: 15, marginTop: 30, fontStyle: 'italic' }}>
+							Hoặc đăng nhập bằng:
+						</Text>
+						<BtnFbLogin navigate={navigate} />
+					</View>
         </Content>
       </Container>
     );

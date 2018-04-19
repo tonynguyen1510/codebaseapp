@@ -48,6 +48,14 @@ export const getTracking = (payload, next, nextError) => {
 	};
 };
 
+export function loginFacebook(payload, next) {
+	return {
+		type: 'LOGIN_FACEBOOK',
+		payload,
+		next,
+	};
+}
+
 function auth(state = initialState, action = {}) {
   switch (action.type) {
 		case 'LOGIN_REQUEST':

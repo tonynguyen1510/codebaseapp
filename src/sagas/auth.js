@@ -6,7 +6,7 @@
 * Created: 2018-04-18 22:19:12
 *------------------------------------------------------- */
 import { take, call, put, cancel, fork } from 'redux-saga/effects';
-
+import { LoginManager } from 'react-native-fbsdk';
 import fetchApi from '../utils/FetchApi';
 import AuthStorage from '../utils/AuthStorage';
 
@@ -76,8 +76,43 @@ function* logoutFlow() {
     }
   }
 }
+function* loginFacebookFlow() {
+	const INFINITE = true;
+
+	while (INFINITE) {
+		const { payload, next } = yield take('LOGIN_FACEBOOK');
+		try {
+			const response = yield call(fetchApi, {
+				uri: 'users/login-facebook',
+				params: payload,
+				opt: { method: 'POST' },
+			});
+			if (response && !response.error) {
+				const data = {
+					token: response.id,
+					userId: response.userId,
+					loginType: response.user.loginType,
+				};
+				yield call(AuthStorage.setValue, data, next);
+
+				yield put({
+					type: 'LOGIN_SUCCESS',
+					payload: response.user,
+				});
+			} else {
+				yield put({
+					type: 'LOGIN_FAILED',
+					payload: response,
+				});
+			}
+		} catch (err) {
+			yield put({ type: 'REQUEST_ERROR', payload: err });
+		}
+	}
+}
 
 export default function* authFlow() {
   yield fork(loginFlow);
-  yield fork(logoutFlow);
+	yield fork(logoutFlow);
+	yield fork(loginFacebookFlow);
 }
