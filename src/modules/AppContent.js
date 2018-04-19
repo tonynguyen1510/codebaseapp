@@ -11,27 +11,38 @@ import { Container } from 'native-base';
 import LoginContainer from './auth/Login/LoginContainer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { toggleMessageBox } from '../redux/MessageBoxState';
 
 function mapStateToProps(state) {
 	return {
-		auth: state.get('auth').toJS()
+		auth: state.get('auth').toJS(),
+		loader: state.get('loader').toJS()
 	};
 }
 
 const mapDispatchToProps = {
+	toggleMessageBox
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class AppContent extends PureComponent {
   static propTypes = {
 		// classes: PropTypes.object.isRequired,
-		auth: PropTypes.object.isRequired
+		auth: PropTypes.object.isRequired,
+		toggleMessageBox: PropTypes.func.isRequired
   }
 
   static defaultProps = {}
   state = {
 		mode: 'mainscreen'
-  }
+	}
+	componentWillReceiveProps(nextProps) {
+		const { loader } = nextProps;
+		if (loader.error) {
+			// nextProps.toggleMessageBox({ message: loader.error, type: 'error' });
+		}
+	}
+
   render() {
 		const { auth } = this.props;
 

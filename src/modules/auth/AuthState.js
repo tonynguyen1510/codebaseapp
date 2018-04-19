@@ -34,8 +34,19 @@ export const getStudentList = (payload, next, nextError) => {
 		payload: {
 			uri: `students?filter=${JSON.stringify(payload.filter)}`,
 			afterSuccess: next,
-			afterError: nextError,
+			afterError: nextError
 		},
+	};
+};
+
+export const getTracking = (payload, next, nextError) => {
+	return {
+		type: 'SINGLE_API',
+		payload: {
+			uri: `trackings?filter=${JSON.stringify(payload.filter)}`,
+			afterSuccess: next,
+			afterError: nextError
+		}
 	};
 };
 

@@ -35,10 +35,10 @@ export default class LoginView extends Component {
 		...propTypes,
 		auth: PropTypes.object,
     navigate: PropTypes.func.isRequired,
-    toggleMessageBox: PropTypes.func.isRequired,
     authStateActions: PropTypes.shape({
 			getStudentList: PropTypes.func.isRequired,
-			loginRequest: PropTypes.func.isRequired
+			loginRequest: PropTypes.func.isRequired,
+			getTracking: PropTypes.func.isRequired
     }),
   }
 
@@ -50,7 +50,6 @@ export default class LoginView extends Component {
 
   handleMessage = () => {
     console.log('this is handle message');
-	// this.props.toggleMessageBox({message: 'test error', type: 'error'});
 	  this.props.authStateActions.getStudentList({filter: {}}, (res) => {
 		  console.log('res', res);
 	  });
@@ -80,13 +79,21 @@ export default class LoginView extends Component {
 				this.props.navigate({ routeName: 'Color' });
 			}
 		});
-  }
+	}
+	testApi = () => {
+		this.props.authStateActions.getTracking({ filter: {} }, (res) => {
+			console.log('res', res);
+		})
+	}
 
   render() {
 		const { navigate, handleSubmit, submitting } = this.props;
 
     return (
       <Container style={styles.container}>
+				{
+					this.state.loading && <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, flex: 1, width: '100%', backgroundColor: 'transparent', zIndex: 9999 }} />
+				}
         <Content style={styles.content}>
           <View>
 						<Field
@@ -129,6 +136,7 @@ export default class LoginView extends Component {
 							<Button
 								style={{ marginRight: -16 }}
 								transparent
+								onPress={this.testApi}
 							>
 								<Text>Đăng ký</Text>
 							</Button>

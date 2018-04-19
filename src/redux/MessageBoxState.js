@@ -5,12 +5,12 @@
 *
 * Created: 2018-04-16 10:51:57
 *------------------------------------------------------- */
-import {Map} from 'immutable';
+import { Map } from 'immutable';
 // Initial state
 const initialState = Map({
-  isOpen: false,
-  message: '',
-  type: ''
+	isOpen: false,
+	message: '',
+	type: ''
 });
 
 export function toggleMessageBox(payload, next) {
@@ -21,7 +21,7 @@ export function toggleMessageBox(payload, next) {
 	};
 }
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
 	switch (action.type) {
 		case 'TOGGLE_MESSAGE_BOX':
 			return state

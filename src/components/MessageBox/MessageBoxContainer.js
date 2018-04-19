@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import MessageBoxView from './MessageBoxView';
 import {NavigationActions} from 'react-navigation';
-import * as MessageBoxStateActions from './MessageBoxState';
+import * as MessageBoxStateActions from '../../redux/MessageBoxState';
 
 export default connect(
   state => ({

@@ -4,7 +4,8 @@ import NavigatorStateReducer from '../modules/navigator/NavigatorState';
 import CounterStateReducer from '../modules/counter/CounterState';
 import SessionStateReducer, {RESET_STATE} from '../modules/session/SessionState';
 import AuthState from '../modules/auth/AuthState';
-import MessageBoxState from '../modules/messageBox/MessageBoxState';
+import MessageBoxState from './MessageBoxState';
+import LoaderState from './loader';
 import { reducer as formReducer } from 'redux-form/immutable';
 // ## Generator Reducer Imports
 
@@ -12,7 +13,8 @@ const reducers = {
   // Counter sample app state. This can be removed in a live application
   counter: CounterStateReducer,
   // ## Generator Reducers
-  auth: AuthState,
+	auth: AuthState,
+	loader: LoaderState,
 	messageBox: MessageBoxState,
 	form: formReducer,
   // Navigator states

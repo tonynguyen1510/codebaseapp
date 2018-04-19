@@ -146,7 +146,7 @@ export default function* ({ uri, params = {}, opt = {}, loading = true, uploadIm
 		}
 	} catch (error) {
 		response = { error };
-
+		yield put({ type: 'TOGGLE_MESSAGE_BOX', payload: { message: error.message || error, type: 'error' } });
 		if (error.statusCode === 401 && (error.code === 'INVALID_TOKEN' || error.code === 'AUTHORIZATION_REQUIRED')) {
 			// token is expired
 			yield call(AuthStorage.destroy);
@@ -158,6 +158,7 @@ export default function* ({ uri, params = {}, opt = {}, loading = true, uploadIm
 		} else {
 			if (loading) {
 				yield put({ type: 'REQUEST_ERROR', payload: error.message || error });
+
 			}
 		}
 	}

@@ -5,7 +5,7 @@ import * as snapshotUtil from '../utils/snapshot';
 import * as SessionStateActions from '../modules/session/SessionState';
 import store from '../redux/store';
 import DeveloperMenu from '../components/DeveloperMenu';
-import MessageBox from './messageBox/MessageBoxContainer';
+import MessageBox from '../components/MessageBox/MessageBoxContainer';
 import {NavigationActions} from 'react-navigation';
 import AppContent from './AppContent';
 
