@@ -14,7 +14,7 @@ import { Container, Spinner } from 'native-base';
 
 function mapStateToProps(state) {
 	return {
-		loading: state.loader.sending,
+		loading: state.getIn(['loader', 'sending'])
 	};
 }
 

@@ -48,12 +48,6 @@ export default class LoginView extends Component {
 		hasError: false,
 	}
 
-  handleMessage = () => {
-    console.log('this is handle message');
-	  this.props.authStateActions.getStudentList({filter: {}}, (res) => {
-		  console.log('res', res);
-	  });
-	}
 	componentWillMount() {
 		if (AuthStorage.loggedIn) {
 			this.props.navigate({ routeName: 'Color' });
@@ -64,21 +58,16 @@ export default class LoginView extends Component {
 		if (auth.error && this.state.loading) {
 			this.setState({
 				loading: false,
-				hasError: true,
+				hasError: true
 			});
 		}
 	}
 	handlePressSubmit = (data) => {
 		this.setState({
 			loading: true,
-			hasError: false,
+			hasError: false
 		});
-		this.props.authStateActions.loginRequest(data.toJS(), () => {
-			if (AuthStorage.token) {
-				this.setState({ loading: false });
-				this.props.navigate({ routeName: 'Color' });
-			}
-		});
+		this.props.authStateActions.loginRequest(data.toJS());
 	}
 	testApi = () => {
 		this.props.authStateActions.getTracking({ filter: {} }, (res) => {

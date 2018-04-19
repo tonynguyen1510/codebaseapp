@@ -13,18 +13,16 @@ const initialState = Map({
   error: ''
 });
 
-export function loginRequest(payload, next) {
+export function loginRequest(payload, next, nextError) {
 	return {
 		type: 'LOGIN_REQUEST',
-		payload,
-		next,
+		payload
 	};
 }
 
 export function logoutRequest(next) {
 	return {
-		type: 'LOGOUT_REQUEST',
-		next,
+		type: 'LOGOUT_REQUEST'
 	};
 }
 
@@ -52,10 +50,12 @@ export const getTracking = (payload, next, nextError) => {
 
 function auth(state = initialState, action = {}) {
   switch (action.type) {
+		case 'LOGIN_REQUEST':
+			return state.set('error', '').set('loading', true);
     case 'LOGIN_SUCCESS':
-      return state.set('userInfo', action.payload);
+			return state.set('userInfo', action.payload).set('loading', false);
     case 'LOGIN_FAILED':
-      return state.set('error', action.payload || '');
+			return state.set('error', action.payload || '').set('loading', true);
     case 'LOGOUT_SUCCESS':
       return state.set('userInfo', {});
     default:
