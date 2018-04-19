@@ -56,6 +56,14 @@ export function loginFacebook(payload, next) {
 	};
 }
 
+export function loginGoogle(payload, next) {
+	return {
+		type: 'LOGIN_GOOGLE',
+		payload,
+		next,
+	};
+}
+
 function auth(state = initialState, action = {}) {
   switch (action.type) {
 		case 'LOGIN_REQUEST':

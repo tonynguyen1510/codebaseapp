@@ -20,6 +20,7 @@ import { Field, reduxForm, propTypes } from 'redux-form/immutable';
 import Input from '../../../components/Form/Input/ReduxForm';
 import BtnLoader from '../../../components/Form/BtnLoader';
 import BtnFbLogin from '../../../components/Form/BtnFbLogin';
+import BtnGgLogin from '../../../components/Form/BtnGgLogin';
 import { required, minLength, email, aol } from '../../../utils/validate';
 import AuthStorage from '../../../utils/AuthStorage';
 const minLength6 = minLength(6);
@@ -137,6 +138,7 @@ export default class LoginView extends Component {
 							Hoặc đăng nhập bằng:
 						</Text>
 						<BtnFbLogin navigate={navigate} />
+						<BtnGgLogin navigate={navigate} />
 					</View>
         </Content>
       </Container>
