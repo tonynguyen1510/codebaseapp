@@ -7,13 +7,25 @@
 *------------------------------------------------------- */
 import React, { PureComponent } from 'react';
 import NavigatorViewContainer from './navigator/NavigatorViewContainer';
-import { View } from 'react-native';
 import { Container } from 'native-base';
 import LoginContainer from './auth/Login/LoginContainer';
-import AuthStorage from '../utils/AuthStorage';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+	return {
+		auth: state.get('auth').toJS()
+	};
+}
+
+const mapDispatchToProps = {
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class AppContent extends PureComponent {
   static propTypes = {
-    // classes: PropTypes.object.isRequired,
+		// classes: PropTypes.object.isRequired,
+		auth: PropTypes.object.isRequired
   }
 
   static defaultProps = {}
@@ -21,24 +33,17 @@ export default class AppContent extends PureComponent {
 		mode: 'mainscreen'
   }
   render() {
+		const { auth } = this.props;
+
     return (
 			<Container>
-			{!AuthStorage.loggedIn &&
+				{!auth.userInfo.id &&
           <LoginContainer />
       }
-			{AuthStorage.loggedIn && this.state.mode === 'mainscreen' &&
+				{auth.userInfo.id && this.state.mode === 'mainscreen' &&
         <NavigatorViewContainer />
       }
      </Container>
     );
   }
 }
-
-const styles = {
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white'
-  }
-};
