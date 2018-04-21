@@ -11,7 +11,7 @@ import { Container } from 'native-base';
 import LoginContainer from './auth/Login/LoginContainer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { toggleMessageBox } from '../redux/MessageBoxState';
+import { toggleMessageBox } from '../redux/store/MessageBoxState';
 
 function mapStateToProps(state) {
 	return {

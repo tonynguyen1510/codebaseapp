@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LoginView from './LoginView';
 import { NavigationActions } from 'react-navigation';
-import * as AuthStateActions from '../AuthState';
+import * as AuthStateActions from '../../../redux/actions/auth';
 
 export default connect(
   state => ({

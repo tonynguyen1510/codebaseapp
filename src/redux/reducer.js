@@ -1,11 +1,11 @@
 import {Map, fromJS} from 'immutable';
 import {loop, combineReducers} from 'redux-loop-symbol-ponyfill';
-import NavigatorStateReducer from '../modules/navigator/NavigatorState';
+import NavigatorStateReducer from './store/NavigatorState';
 import CounterStateReducer from '../modules/counter/CounterState';
 import SessionStateReducer, {RESET_STATE} from '../modules/session/SessionState';
-import AuthState from '../modules/auth/AuthState';
-import MessageBoxState from './MessageBoxState';
-import LoaderState from './loader';
+import AuthState from './store/AuthState';
+import MessageBoxState from './store/MessageBoxState';
+import LoaderState from './store/loader';
 import { reducer as formReducer } from 'redux-form/immutable';
 // ## Generator Reducer Imports
 

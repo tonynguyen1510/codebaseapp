@@ -29,7 +29,7 @@ const minLength6 = minLength(6);
   form: 'login',
   initialValues: {
     email: 'admin@gmail.com',
-    password: '123456',
+    password: 'supperadmin',
   },
 })
 export default class LoginView extends Component {

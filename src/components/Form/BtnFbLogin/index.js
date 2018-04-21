@@ -19,8 +19,8 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 import AuthStorage from '../../../utils/AuthStorage';
 
-import { loginFacebook } from '../../../modules/auth/AuthState';
-import { toggleMessageBox } from '../../../redux/MessageBoxState';
+import { loginFacebook } from '../../../redux/store/AuthState';
+import { toggleMessageBox } from '../../../redux/store/MessageBoxState';
 
 class BtnFbLogin extends Component {
 	static propTypes = {
