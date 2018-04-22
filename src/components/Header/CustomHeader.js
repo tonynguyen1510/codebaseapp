@@ -19,7 +19,7 @@ import { bindActionCreators } from 'redux';
 
 function mapStateToProps(state) {
 	return {
-		userInfo: state.getIn(['auth', 'userInfo']).toJS(),
+		auth: state.get('auth').toJS(),
 		loader: state.get('loader').toJS()
 	};
 }
@@ -35,16 +35,16 @@ class AppHeader extends Component {
 	static propTypes = {
 		name: PropTypes.string,
 		hasBack: PropTypes.bool,
-		userInfo: PropTypes.object.isRequired,
+		auth: PropTypes.object.isRequired,
 		navigate: PropTypes.func.isRequired
 	};
 
 	render() {
-		const { name, navigate, hasBack, userInfo } = this.props;
-		console.log('userInfo', userInfo)
+		const { name, navigate, hasBack, auth } = this.props;
+
 		return (
 			<View>
-				<Text>Good day, {userInfo.fullName} </Text>
+				<Text>Good day, {auth.userInfo ? auth.userInfo.fullName : ''} </Text>
 			</View>
 		);
 	}

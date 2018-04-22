@@ -19,7 +19,7 @@ import { GoogleSignin } from 'react-native-google-signin';
 
 import AuthStorage from '../../../utils/AuthStorage';
 
-import { loginGoogle } from '../../../redux/store/AuthState';
+import { loginGoogle } from '../../../redux/actions/auth';
 import { toggleMessageBox } from '../../../redux/store/MessageBoxState';
 
 class BtnGgLogin extends Component {

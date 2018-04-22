@@ -19,7 +19,7 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 import AuthStorage from '../../../utils/AuthStorage';
 
-import { loginFacebook } from '../../../redux/store/AuthState';
+import { loginFacebook } from '../../../redux/actions/auth';
 import { toggleMessageBox } from '../../../redux/store/MessageBoxState';
 
 class BtnFbLogin extends Component {
