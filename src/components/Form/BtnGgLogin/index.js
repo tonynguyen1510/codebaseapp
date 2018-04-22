@@ -17,10 +17,10 @@ import {
 } from 'native-base';
 import { GoogleSignin } from 'react-native-google-signin';
 
-import AuthStorage from '../../../utils/AuthStorage';
+import AuthStorage from 'src/utils/AuthStorage';
 
-import { loginGoogle } from '../../../redux/actions/auth';
-import { toggleMessageBox } from '../../../redux/store/MessageBoxState';
+import { loginGoogle } from 'src/redux/actions/auth';
+import { toggleMessageBox } from 'src/redux/store/MessageBoxState';
 
 class BtnGgLogin extends Component {
 	static propTypes = {

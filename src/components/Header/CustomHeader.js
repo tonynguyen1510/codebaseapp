@@ -12,7 +12,7 @@ import {
 	View,
 	Text
 } from 'native-base';
-import color from '../../constants/color';
+import color from 'src/constants/color';
 import { NavigationActions } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 

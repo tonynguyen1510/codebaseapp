@@ -18,15 +18,15 @@ import {
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 import AuthStorage from '../../../utils/AuthStorage';
-
 import { loginFacebook } from '../../../redux/actions/auth';
-import { toggleMessageBox } from '../../../redux/store/MessageBoxState';
+import { toggleMessageBox } from 'src/redux/store/MessageBoxState';
+
 
 class BtnFbLogin extends Component {
 	static propTypes = {
 		navigate: PropTypes.func.isRequired,
 		loginFacebook: PropTypes.func.isRequired,
-		toggleMessageBox: PropTypes.func.isRequired,
+		toggleMessageBox: PropTypes.func.isRequired
 	}
 
 	handleLoginFb = () => {
