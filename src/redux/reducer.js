@@ -1,8 +1,8 @@
 import {Map, fromJS} from 'immutable';
 import {loop, combineReducers} from 'redux-loop-symbol-ponyfill';
 import NavigatorStateReducer from './store/NavigatorState';
-import CounterStateReducer from '../modules/counter/CounterState';
-import SessionStateReducer, {RESET_STATE} from '../modules/session/SessionState';
+import CounterStateReducer from './store/CounterState';
+import SessionStateReducer, {RESET_STATE} from './store/SessionState';
 import AuthState from './store/AuthState';
 import MessageBoxState from './store/MessageBoxState';
 import LoaderState from './store/loader';
