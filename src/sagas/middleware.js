@@ -28,10 +28,17 @@ function* callApi(action) {
 		}
 		*/
 
-		const { successType, afterSuccess, errorType, afterError, ...rest } = action.payload;
+		const { successType, beforeCallType, afterCallType, afterSuccess, errorType, afterError, ...rest } = action.payload;
 
+		if (beforeCallType) {
+			yield put({ type: beforeCallType });
+		}
 		try {
 			const response = yield call(fetchApi, rest);
+
+			if (afterCallType) {
+				yield put({ type: afterCallType });
+			}
 
 			if (response && !response.error) {
 				if (successType) {

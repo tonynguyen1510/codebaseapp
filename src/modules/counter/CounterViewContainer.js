@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import CounterView from './CounterView';
 import {NavigationActions} from 'react-navigation';
 import * as CounterStateActions from '../counter/CounterState';
-import { logoutRequest } from '../../redux/store/AuthState';
+import { logoutRequest } from 'src/redux/actions/auth';
 
 export default connect(
   state => ({

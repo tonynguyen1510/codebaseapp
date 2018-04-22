@@ -6,6 +6,8 @@
 * Created: 2018-04-16 10:51:57
 *------------------------------------------------------- */
 import {Map} from 'immutable';
+import AuthStorage from 'src/utils/AuthStorage';
+
 // Initial state
 const initialState = Map({
   userInfo: {},
@@ -19,8 +21,12 @@ function auth(state = initialState, action = {}) {
 			return state.set('error', '').set('loading', true);
     case 'LOGIN_SUCCESS':
 			return state.set('userInfo', action.payload).set('loading', false);
+		case 'GET_USER_SUCCESS':
+			return state.set('userInfo', action.payload);
+		case 'GET_USER_ERROR':
+			return state.set('error', action.payload || '').set('loading', false).set('userInfo', {});
     case 'LOGIN_FAILED':
-			return state.set('error', action.payload || '').set('loading', true);
+			return state.set('error', action.payload || '').set('loading', false);
     case 'LOGOUT_SUCCESS':
       return state.set('userInfo', {});
     default:

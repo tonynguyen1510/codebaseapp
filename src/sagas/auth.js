@@ -8,7 +8,7 @@
 import { take, call, put, cancel, fork } from 'redux-saga/effects';
 import { LoginManager } from 'react-native-fbsdk';
 import fetchApi from '../utils/FetchApi';
-import AuthStorage from '../utils/AuthStorage';
+import AuthStorage from 'src/utils/AuthStorage';
 
 function* authorize(email, password, next) {
   try {

@@ -1,3 +1,5 @@
+import AuthStorage from 'src/utils/AuthStorage';
+
 
 export function loginRequest(payload, next, nextError) {
 	return {
@@ -49,3 +51,16 @@ export function loginGoogle(payload, next) {
 		next,
 	};
 }
+
+// export function checkLogin(next, nextError) {
+// 	return {
+// 		type: 'SINGLE_API',
+// 		payload: {
+// 			uri: `/users/${AuthStorage.userId}`,
+// 			afterSuccess: next,
+// 			afterError: nextError,
+// 			successType: 'GET_USER_SUCCESS',
+// 			errorType: 'GET_USER_ERROR'
+// 		}
+// 	};
+// }

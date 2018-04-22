@@ -12,6 +12,8 @@ import LoginContainer from './auth/Login/LoginContainer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { toggleMessageBox } from '../redux/store/MessageBoxState';
+// import { checkLogin } from 'src/redux/actions/auth';
+import AuthStorage from 'src/utils/AuthStorage';
 
 function mapStateToProps(state) {
 	return {
@@ -21,7 +23,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-	toggleMessageBox
+	toggleMessageBox,
+	// checkLogin
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -29,13 +32,15 @@ export default class AppContent extends PureComponent {
   static propTypes = {
 		// classes: PropTypes.object.isRequired,
 		auth: PropTypes.object.isRequired,
-		toggleMessageBox: PropTypes.func.isRequired
+		toggleMessageBox: PropTypes.func.isRequired,
+		// checkLogin: PropTypes.func.isRequired
   }
 
   static defaultProps = {}
   state = {
 		mode: 'mainscreen'
 	}
+
 	componentWillReceiveProps(nextProps) {
 		const { loader } = nextProps;
 		if (loader.error) {
@@ -48,9 +53,9 @@ export default class AppContent extends PureComponent {
 
     return (
 			<Container>
-				{!auth.userInfo.id &&
+				{(!auth.userInfo.id || !AuthStorage.token) &&
           <LoginContainer />
-      }
+      	}
 				{auth.userInfo.id && this.state.mode === 'mainscreen' &&
         <NavigatorViewContainer />
       }
