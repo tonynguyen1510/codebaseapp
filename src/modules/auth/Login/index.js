@@ -5,7 +5,6 @@
 *
 * Created: 2018-04-16 10:58:15
 *------------------------------------------------------- */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -15,6 +14,11 @@ import {
 	View,
 	Text,
 } from 'native-base';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { NavigationActions } from 'react-navigation';
+import * as AuthStateActions from 'src/redux/actions/auth'
+
 import styles from './styles';
 import { Field, reduxForm, propTypes } from 'redux-form/immutable';
 import Input from '../../../components/Form/Input/ReduxForm';
@@ -23,26 +27,44 @@ import BtnFbLogin from '../../../components/Form/BtnFbLogin';
 import BtnGgLogin from '../../../components/Form/BtnGgLogin';
 import { required, minLength, email, aol } from '../../../utils/validate';
 import AuthStorage from '../../../utils/AuthStorage';
+
+
 const minLength6 = minLength(6);
 
+const mapStateToProps = (state) => {
+	return {
+		auth: state.get('auth').toJS()
+	};
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		navigate: bindActionCreators(NavigationActions.navigate, dispatch),
+		authStateActions: bindActionCreators(AuthStateActions, dispatch),
+	}
+};
+
 @reduxForm({
-  form: 'login',
-  initialValues: {
-    email: 'admin@gmail.com',
-    password: 'supperadmin',
-  },
+	form: 'login',
+	initialValues: {
+		email: 'admin@gmail.com',
+		password: 'supperadmin',
+	},
 })
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class LoginView extends Component {
-  static propTypes = {
+	static propTypes = {
 		...propTypes,
 		auth: PropTypes.object,
-    navigate: PropTypes.func.isRequired,
-    authStateActions: PropTypes.shape({
+		navigate: PropTypes.func.isRequired,
+		changeMode: PropTypes.func.isRequired,
+		authStateActions: PropTypes.shape({
 			getStudentList: PropTypes.func.isRequired,
 			loginRequest: PropTypes.func.isRequired,
 			getTracking: PropTypes.func.isRequired
-    }),
-  }
+		}),
+	}
 
 	static defaultProps = {}
 	state = {
@@ -77,16 +99,16 @@ export default class LoginView extends Component {
 		})
 	}
 
-  render() {
+	render() {
 		const { navigate, handleSubmit, submitting } = this.props;
 
-    return (
-      <Container style={styles.container}>
+		return (
+			<Container style={styles.container}>
 				{
 					this.state.loading && <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, flex: 1, width: '100%', backgroundColor: 'transparent', zIndex: 9999 }} />
 				}
-        <Content style={styles.content}>
-          <View>
+				<Content style={styles.content}>
+					<View>
 						<Field
 							name="email"
 							label="Email"
@@ -121,18 +143,19 @@ export default class LoginView extends Component {
 							<Button
 								style={{ marginLeft: -16 }}
 								transparent
+								onPress={() => this.props.changeMode('forgotpass')}
 							>
 								<Text>Quên mật khẩu?</Text>
 							</Button>
 							<Button
 								style={{ marginRight: -16 }}
 								transparent
-								onPress={this.testApi}
+								onPress={() => this.props.changeMode('signup')}
 							>
 								<Text>Đăng ký</Text>
 							</Button>
 						</View>
-          </View>
+					</View>
 					<View style={{ marginBottom: 50 }}>
 						<Text style={{ marginBottom: 15, marginTop: 30, fontStyle: 'italic' }}>
 							Hoặc đăng nhập bằng:
@@ -140,8 +163,8 @@ export default class LoginView extends Component {
 						<BtnFbLogin navigate={navigate} />
 						<BtnGgLogin navigate={navigate} />
 					</View>
-        </Content>
-      </Container>
-    );
-  }
+				</Content>
+			</Container>
+		);
+	}
 }
