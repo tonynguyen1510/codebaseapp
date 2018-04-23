@@ -49,7 +49,7 @@ class BtnFbLogin extends Component {
 
 					this.props.loginFacebook({ accessToken }, () => {
 						if (AuthStorage.loggedIn) {
-							this.props.navigate({ routeName: 'Color' });
+							this.props.navigate({ routeName: 'Home' });
 						}
 					});
 				});

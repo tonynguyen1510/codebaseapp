@@ -55,7 +55,7 @@ class BtnGgLogin extends Component {
 
 			this.props.loginGoogle({ accessToken }, () => {
 				if (AuthStorage.loggedIn) {
-					this.props.navigate({ routeName: 'Color' });
+					this.props.navigate({ routeName: 'Home' });
 				}
 			});
 		}).catch((err) => {

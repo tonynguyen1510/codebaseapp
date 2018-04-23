@@ -74,7 +74,7 @@ export default class LoginView extends Component {
 
 	componentWillMount() {
 		if (AuthStorage.loggedIn) {
-			this.props.navigate({ routeName: 'Color' });
+			this.props.navigate({ routeName: 'Home' });
 		}
 	}
 	componentWillReceiveProps(nextProps) {
@@ -84,6 +84,9 @@ export default class LoginView extends Component {
 				loading: false,
 				hasError: true
 			});
+		}
+		if (auth.userInfo.id) {
+			this.props.navigate({ routeName: 'Home' });
 		}
 	}
 	handlePressSubmit = (data) => {

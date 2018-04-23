@@ -51,16 +51,18 @@ export default class AppContent extends PureComponent {
 
 
 	componentWillMount() {
-		if (!this.props.auth.userInfo.id || !AuthStorage.token) {
-			this.setState({ mode: 'login' });
-		}
 	}
 
-
 	componentWillReceiveProps(nextProps) {
-		const { loader } = nextProps;
+		const { loader, auth } = nextProps;
 		if (loader.error) {
 			// nextProps.toggleMessageBox({ message: loader.error, type: 'error' });
+		}
+		if (auth.userInfo.id) {
+			this.setState({ mode: 'mainscreen' })
+		}
+		if (!auth.userInfo.id || !AuthStorage.token) {
+			this.setState({ mode: 'login' });
 		}
 	}
 
@@ -79,8 +81,8 @@ export default class AppContent extends PureComponent {
 					<ForgotPass changeMode={this.changeMode} />
 				}
 				{this.state.mode === 'mainscreen' &&
-        <NavigatorViewContainer />
-      }
+        	<NavigatorViewContainer />
+      	}
      </Container>
     );
   }
