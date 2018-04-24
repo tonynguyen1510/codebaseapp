@@ -11,9 +11,7 @@ import { Container } from 'native-base';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import LoginContainer from './auth/Login';
-import SignUp from 'src/modules/auth/SignUp';
-import ForgotPass from 'src/modules/auth/ForgotPass';
+import AuthScreen from 'src/modules/auth';
 import { toggleMessageBox } from '../redux/store/MessageBoxState';
 // import { checkLogin } from 'src/redux/actions/auth';
 import AuthStorage from 'src/utils/AuthStorage';
@@ -41,28 +39,13 @@ export default class AppContent extends PureComponent {
 
 	static defaultProps = {}
 
-  state = {
-		mode: 'mainscreen'
-	}
-
-	changeMode = (mode) => {
-		this.setState({ mode: mode });
-	};
-
-
 	componentWillMount() {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const { loader, auth } = nextProps;
+		const { loader } = nextProps;
 		if (loader.error) {
 			// nextProps.toggleMessageBox({ message: loader.error, type: 'error' });
-		}
-		if (auth.userInfo.id) {
-			this.setState({ mode: 'mainscreen' })
-		}
-		if (!auth.userInfo.id || !AuthStorage.token) {
-			this.setState({ mode: 'login' });
 		}
 	}
 
@@ -71,16 +54,10 @@ export default class AppContent extends PureComponent {
 
     return (
 			<Container>
-				{this.state.mode === 'login' &&
-          <LoginContainer changeMode={this.changeMode}  />
+				{(!auth.userInfo.id || !AuthStorage.token) &&
+					<AuthScreen changeMode={this.changeMode}  />
 				}
-				{this.state.mode === 'signup' &&
-					<SignUp changeMode={this.changeMode} />
-				}
-				{this.state.mode === 'forgotpass' &&
-					<ForgotPass changeMode={this.changeMode} />
-				}
-				{this.state.mode === 'mainscreen' &&
+				{auth.userInfo.id &&
         	<NavigatorViewContainer />
       	}
      </Container>
