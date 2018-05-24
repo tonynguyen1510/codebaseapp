@@ -53,7 +53,7 @@ export default class AppContent extends PureComponent {
 		const { auth } = this.props;
 
     return (
-			<Container>
+			<Container style={{ flex: 1 }}>
 				{(!auth.userInfo.id || !AuthStorage.token) &&
 					<AuthScreen changeMode={this.changeMode}  />
 				}

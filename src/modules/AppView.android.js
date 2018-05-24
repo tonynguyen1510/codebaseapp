@@ -6,9 +6,10 @@ import * as SessionStateActions from 'src/redux/store/SessionState';
 import store from '../redux/store';
 import DeveloperMenu from '../components/DeveloperMenu';
 import MessageBox from '../components/MessageBox/MessageBoxContainer';
-import Spinner from '../components/Loaders/Spinner';
+import Spinner from 'src/components/Loaders/Spinner';
 import {NavigationActions} from 'react-navigation';
 import AppContent from './AppContent';
+import { Container } from 'native-base';
 
 class AppView extends Component {
   static displayName = 'AppView';
@@ -64,13 +65,13 @@ class AppView extends Component {
     }
 
     return (
-      <View style={{flex: 1}}>
+			<Container>
         <StatusBar backgroundColor='#455a64' barStyle='light-content' />
+				<MessageBox />
+				<AppContent />
 				<Spinner />
-        <MessageBox />
-        <AppContent />
         {__DEV__ && <DeveloperMenu />}
-      </View>
+			</Container>
     );
   }
 }
