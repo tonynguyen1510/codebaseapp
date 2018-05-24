@@ -30,9 +30,8 @@ class BtnFbLogin extends Component {
 	}
 
 	handleLoginFb = () => {
-		LoginManager.logInWithReadPermissions(['public_profile']).then((result) => {
+		LoginManager.logInWithReadPermissions(['public_profile', 'email']).then((result) => {
 			if (result.isCancelled) {
-				console.log('Login was cancelled');
 			} else {
 				AccessToken.getCurrentAccessToken().then((data) => {
 					console.log('data', data);

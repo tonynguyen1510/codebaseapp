@@ -7,6 +7,6 @@
  *-------------------------------------------------------*/
 
 export default {
-	API_BASE_URL: 'https://api.ippedu.com/api/v1/',
-	// API_BASE_URL: 'http://192.168.1.6:3005/api/v1/',
+	API_BASE_URL: 'https://basic-api-loopback.herokuapp.com/api/v1/',
+	// API_BASE_URL: 'http://192.168.1.4:3005/api/v1/',
 };

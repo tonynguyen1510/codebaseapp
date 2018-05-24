@@ -32,8 +32,8 @@ class BtnGgLogin extends Component {
 	componentWillMount() {
 		GoogleSignin.hasPlayServices({ autoResolve: true });
 		GoogleSignin.configure({
-			androidClientId: '502795845770-fbop0ejs9dltq1jq1ao80tqap3g9g5af.apps.googleusercontent.com',
-			iosClientId: '502795845770-fbop0ejs9dltq1jq1ao80tqap3g9g5af.apps.googleusercontent.com',
+			androidClientId: '502795845770-gcps0fn2j1dcrfan99ntvvbru3dbkomr.apps.googleusercontent.com',
+			iosClientId: '502795845770-2dai7a79b7c2556e76ur6ii6bh95m0fh.apps.googleusercontent.com',
 			webClientId: '502795845770-gcps0fn2j1dcrfan99ntvvbru3dbkomr.apps.googleusercontent.com',
 			offlineAccess: true,
 		});
